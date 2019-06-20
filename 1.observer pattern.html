@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //观察者模式实现
+
+        //观察者列表
+        function ObservationList(){
+            this.observationList = []
+        }
+
+        ObservationList.prototype.add = function(obj){
+            return this.observationList.push(obj)
+        }
+
+        ObservationList.prototype.count= function(){
+            return this.observationList.length
+        }
+        
+        ObservationList.prototype.get = function(index){
+            if(index>-1 && index < this.observationList.length){
+                return this.observationList[index]
+            }
+        }
+
+        ObservationList.prototype.indexOf = function(obj, startIndex){
+            var i = startIndex
+            while(i < this.observationList.length) {
+                if(this.observationList[i] === obj) {
+                    return;
+                }
+
+                i++;
+            }
+
+            return -1;
+        }
+
+        ObservationList.prototype.removeAt = function(){
+            this.observationList.splice(index, 1)
+        }
+
+        //目标
+
+        function Subject(){
+            this.observers = new ObservationList()
+        }
+
+        Subject.prototype.addObserver = function(observer){
+            this.observers.add(observer)
+        }
+
+        Subject.prototype.removeObserver = function(observer){
+            this.observers.removeAt(this.observers.indexOf(observer,0))
+        }
+        Subject.prototype.notify = function(){
+            var observerCount = this.observers.count()
+            for(var i=0; i<observerCount; i++){
+                this.observers.get(i).update()
+            }
+        }
+
+        //观察者
+        function Observer(){
+            this.update = function(){
+                console.log("trigger update");
+            }
+        }
+
+        let observer = new Observer()
+
+        var subject = new Subject()
+        subject.addObserver(observer)
+        subject.notify()
+
+    </script>
+</body>
+</html>

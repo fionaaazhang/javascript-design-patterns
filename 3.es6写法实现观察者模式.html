@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //subject订阅主体, 管理观察者数组,拥有三个方法, 添加订阅者,删除订阅者,notify订阅者
+
+        //观察者模式和发布-订阅模式的区别在于调度中心
+        //观察者模式中, 每一个subject里都有直接对观察者的处理,造成代码冗余
+        //发布-订阅模式中, 通过调度中心处理,消除了他们之间的依赖
+        class Subject{
+            constructor(){
+                this.observers = []
+            }
+            addObserver(observer){
+                this.observers.push(observer)
+            }
+
+            removeObserver(observer){
+                let index = this.observers.indexOf(obsever)
+                if(index > -1) {
+                    this.observers.splice(index,1)
+                }
+                
+            }
+
+            notify(){
+                this.observers.forEach(item=>{
+                    item.update()
+                })
+            }
+        }
+
+        //观察者
+        class Observer {
+            constructor(){
+                this.update = function(){
+                    console.log("update");
+                    
+                }
+            }
+        }
+
+        let observer = new Observer()
+        let subject = new Subject()
+        subject.addObserver(observer)
+        subject.notify()
+    </script>
+</body>
+</html>

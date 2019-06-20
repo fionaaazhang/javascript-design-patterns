@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //Object.prototype.hasOwnProperty(prop) prop属性名称字符串或symbol
+        //返回boolean  继承属性返回false
+        let o = new Object()
+        o.prop = "exists"
+
+        function changeO (){
+            o.newProp = o.prop;
+            delete o.prop
+        }
+
+        console.log( o.hasOwnProperty("prop"));
+
+        changeO();
+
+        console.log(o.hasOwnProperty('prop'));
+        
+        
+
+    </script>
+</body>
+</html>
