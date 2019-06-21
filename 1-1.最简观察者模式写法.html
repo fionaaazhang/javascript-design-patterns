@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let Dep = function (){
+            this.subscribers = []
+        }
+
+        Dep.prototype.addSub = function(sub){
+            this.subscribers.push(sub)
+        }
+        Dep.prototype.removeSub = function(sub) {
+
+        }
+        Dep.prototype.notify = function(){
+            this.subscribers.forEach(sub =>{
+                sub.update()
+            })
+        }
+
+        function Sub (){
+            this.update = function(){
+                console.log("actually watcher mode");
+                
+            }
+        }
+
+        let dep = new Dep()
+        let sub = new Sub()
+        dep.addSub(sub)
+        dep.notify()
+    </script>
+</body>
+</html>
